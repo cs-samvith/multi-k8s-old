@@ -1,0 +1,20 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: karumala-fun-tls
+spec:
+  secretName: karumala-fun
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: karumala.fun
+  dnsNames:
+    - karumala.fun
+    - www.karumala.fun
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - karumala.fun
+          - www.karumala.fun
